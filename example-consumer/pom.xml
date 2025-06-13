@@ -9,7 +9,7 @@
   <dependencies>
     <dependency>
       <groupId>com.zkkw</groupId>
-      <artifactId>yu-rpc-easy</artifactId>
+      <artifactId>yu-rpc-core</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
