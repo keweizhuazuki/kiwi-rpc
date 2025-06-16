@@ -14,7 +14,7 @@ public class ConfigUtils {
         if (StrUtil.isNotBlank(environment)){
             configFileBuilder.append("-").append(environment);
         }
-        configFileBuilder = configFileBuilder.append(".properties");
+        configFileBuilder.append(".properties");
         Props props = new Props(configFileBuilder.toString());
         return props.toBean(tClass, prefix);
     }
