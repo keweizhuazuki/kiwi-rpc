@@ -1,7 +1,7 @@
 package com.zkkw.example.provider;
 
-import com.yupi.yurpc.registry.LocalRegistry;
-import com.yupi.yurpc.server.VertxHttpServer;
+import com.zkkw.yurpc.registry.LocalRegistry;
+import com.zkkw.yurpc.server.VertxHttpServer;
 import com.zkkw.example.common.service.UserService;
 import com.zkkw.yurpc.RpcApplication;
 

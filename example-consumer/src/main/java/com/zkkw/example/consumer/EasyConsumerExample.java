@@ -1,6 +1,6 @@
 package com.zkkw.example.consumer;
 
-import com.yupi.yurpc.proxy.ServiceProxyFactory;
+import com.zkkw.yurpc.proxy.ServiceProxyFactory;
 import com.zkkw.example.common.model.User;
 import com.zkkw.example.common.service.UserService;
 
