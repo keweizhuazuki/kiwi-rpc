@@ -2,9 +2,12 @@ package com.zkkw.yurpc.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
+import com.zkkw.yurpc.RpcApplication;
 import com.zkkw.yurpc.model.RpcRequest;
 import com.zkkw.yurpc.model.RpcResponse;
 import com.zkkw.yurpc.serializer.JdkSerializer;
+import com.zkkw.yurpc.serializer.Serializer;
+import com.zkkw.yurpc.serializer.SerializerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -13,7 +16,8 @@ import java.lang.reflect.Method;
 public class ServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        JdkSerializer serializer = new JdkSerializer();
+        // 获取序列化器实例
+        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         // 构建 RpcRequest 对象
         RpcRequest rpcRequest = RpcRequest.builder()

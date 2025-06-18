@@ -1,10 +1,12 @@
 package com.zkkw.yurpc.server;
 
+import com.zkkw.yurpc.RpcApplication;
 import com.zkkw.yurpc.model.RpcRequest;
 import com.zkkw.yurpc.model.RpcResponse;
 import com.zkkw.yurpc.registry.LocalRegistry;
 import com.zkkw.yurpc.serializer.JdkSerializer;
 import com.zkkw.yurpc.serializer.Serializer;
+import com.zkkw.yurpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -16,7 +18,8 @@ import java.lang.reflect.Method;
 public class HttpServerHandler implements Handler<HttpServerRequest> {
     @Override
     public void handle(HttpServerRequest request) {
-        JdkSerializer serializer = new JdkSerializer();
+        // 获取序列化器实例
+        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         System.out.println("Received request: " + request.method() + " " + request.uri());
 
