@@ -18,6 +18,8 @@ public class RpcRequest implements Serializable {
 
     private String methodName;
 
+    private String serviceVersion = RpcConstant.DEFAULT_SERVICE_VERSION;
+
     private Class<?>[] parameterTypes;
 
     private Object[] args;
