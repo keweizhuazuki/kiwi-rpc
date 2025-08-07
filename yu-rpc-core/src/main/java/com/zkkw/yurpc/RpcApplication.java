@@ -29,6 +29,8 @@ public class RpcApplication {
         Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
         registry.init(registryConfig);
         log.info("Registry initialized with config: {}", registryConfig);
+        // 创建并且注册 shutdown hook，推出时执行 destroy 方法
+        Runtime.getRuntime().addShutdownHook(new Thread(registry::destroy, "EtcdRegistryShutdownHook"));
     }
 
     /**
