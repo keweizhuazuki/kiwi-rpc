@@ -1,5 +1,6 @@
 package com.zkkw.yurpc.config;
 
+import com.zkkw.yurpc.fault.retry.RetryStrategyKeys;
 import com.zkkw.yurpc.loadbalancer.ConsistentHashLoadBalancer;
 import com.zkkw.yurpc.loadbalancer.LoadBalancer;
 import com.zkkw.yurpc.loadbalancer.LoadBalancerKeys;
@@ -35,4 +36,6 @@ public class RpcConfig {
     private RegistryConfig registryConfig = new RegistryConfig();
 
     public String loadBalancer = LoadBalancerKeys.CONSISTENT_HASH;
+
+    private String retryStrategy = RetryStrategyKeys.NO;
 }

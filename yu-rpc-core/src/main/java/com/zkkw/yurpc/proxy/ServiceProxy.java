@@ -6,6 +6,8 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.zkkw.yurpc.RpcApplication;
 import com.zkkw.yurpc.config.RpcConfig;
+import com.zkkw.yurpc.fault.retry.RetryStrategy;
+import com.zkkw.yurpc.fault.retry.RetryStrategyFactory;
 import com.zkkw.yurpc.loadbalancer.LoadBalancer;
 import com.zkkw.yurpc.loadbalancer.LoadBalancerFactory;
 import com.zkkw.yurpc.model.RpcConstant;
@@ -72,7 +74,11 @@ public class ServiceProxy implements InvocationHandler {
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
 
             // rpc 请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            // 使用重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
             return rpcResponse.getData();
         } catch (Exception e) {
             throw new RuntimeException("调用失败");
