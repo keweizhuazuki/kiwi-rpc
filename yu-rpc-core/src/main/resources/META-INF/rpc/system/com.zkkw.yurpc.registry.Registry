@@ -1,1 +1,2 @@
 etcd=com.zkkw.yurpc.registry.ETCDRegistry
+zookeeper=com.zkkw.yurpc.registry.ZookeeperRegistry
