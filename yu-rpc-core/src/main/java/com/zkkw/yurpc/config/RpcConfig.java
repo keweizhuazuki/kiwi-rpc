@@ -1,5 +1,8 @@
 package com.zkkw.yurpc.config;
 
+import com.zkkw.yurpc.loadbalancer.ConsistentHashLoadBalancer;
+import com.zkkw.yurpc.loadbalancer.LoadBalancer;
+import com.zkkw.yurpc.loadbalancer.LoadBalancerKeys;
 import com.zkkw.yurpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -30,4 +33,6 @@ public class RpcConfig {
     private String serializer = SerializerKeys.JDK;
 
     private RegistryConfig registryConfig = new RegistryConfig();
+
+    public String loadBalancer = LoadBalancerKeys.CONSISTENT_HASH;
 }
